@@ -87,7 +87,7 @@ const askEngineer = () => {
   ///need to add a way to end this 
 },
 
-]);
+])
 
 }
 
@@ -134,6 +134,7 @@ const askIntern = () => {
 
 }
 
+
 const init = () => {
     inquirer.prompt(questionsManager).then((data) => {
         teamMembers.push(new Manager(data.name, data.id, data.email, data.officeNumber))
@@ -145,12 +146,12 @@ const init = () => {
         }
         else {
             //end function here and generatehtml
-            
-            generateHTML(teamMembers);
+            let data = generateHTML(teamMembers);
+            //generateHTML(teamMembers);
+            fs.writeFileSync('team.html', data, "utf-8");
         }
     })
-
-    
+   
 
 }
 
