@@ -24,6 +24,33 @@ const generateManager =(data)=>{
   </div>
   </li>`
 }
+
+const generateEngineer =(data)=>{
+    //data.name data.id data.email data.officeNumber
+    return `  <li>
+    <div class="col-md-3">
+    <div class="card cardbody">
+    <div class="card-header font: text-white" style="background: blue">
+                   ${data.name}<br>
+                   <div class="fas fa-mug-hot">${data.getRole}</div>
+                  </div>
+      <div class="card-body">
+        <form role="form">          
+          <div class="form-group">
+              <label  ${data.id}</label>
+          </div>
+          <div class="form-group">
+            <label ${data.email}</label>
+          </div>
+          <div class="form-group">
+              <label ${data.officeNumber}</label>                  
+          </div>              
+          </form>
+      </div>
+    </div>
+  </div>
+  </li>`
+}
 const generateCards = (data) => {
     //data will be an array of Employees (Manager/Intern/Engineer)
     let htmlString = "";
@@ -33,17 +60,22 @@ const generateCards = (data) => {
             // generateManager(element);
           let string = generateManager(element);
           htmlString += string;
-        } //onsole.log(element);
+        }
         
-        //else if{
-        //     (element.getRole() === "Engineer")
-        //         generateManager(data);
-        // } else {
-        //     (element.getRole() === "Intern")
-        //         generateManager(data);
-        // }
-    });
+      });
+
+      data.forEach(element => {
+        
+        if(element.getRole() === "Engineer"){
+            // generateManager(element);
+          let string = generateEngineer(element);
+          htmlString += string;
+          
+        }
+        console.log(element)
+      }); 
     return htmlString;
+   
 };
 
 
@@ -65,6 +97,7 @@ const generateHTML = (data) => {
     </div>
   </div>
         ${generateCards(data)}
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
     </body>
     </html>`
