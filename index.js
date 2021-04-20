@@ -148,7 +148,7 @@ const init = () => {
             //end function here and generatehtml
             let data = generateHTML(teamMembers);
             //generateHTML(teamMembers);
-            fs.writeFileSync('team.html', data, "utf-8");
+            fs.writeFileSync('index.html', data, "utf-8");
         }
     })
    

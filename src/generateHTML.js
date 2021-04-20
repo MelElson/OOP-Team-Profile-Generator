@@ -26,11 +26,16 @@ const generateManager =(data)=>{
 }
 const generateCards = (data) => {
     //data will be an array of Employees (Manager/Intern/Engineer)
+    let htmlString = "";
     data.forEach(element => {
         //generate a card based on role 
         if(element.getRole() === "Manager"){
-            generateManager(data);
-        } //else if{
+            // generateManager(element);
+          let string = generateManager(element);
+          htmlString += string;
+        } //onsole.log(element);
+        
+        //else if{
         //     (element.getRole() === "Engineer")
         //         generateManager(data);
         // } else {
@@ -38,6 +43,7 @@ const generateCards = (data) => {
         //         generateManager(data);
         // }
     });
+    return htmlString;
 };
 
 
