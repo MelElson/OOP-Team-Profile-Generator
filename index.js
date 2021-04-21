@@ -1,160 +1,141 @@
-// global variables 
-const inquirer = require('inquirer');
-const path = require('path');
-const fs = require('fs');
+
+const fs = require("fs");
 const generateHTML = require("./src/generateHTML");
+const inquirer = require("inquirer");
 const Manager = require("./lib/Manager");
 const Engineer = require("./lib/Engineer");
-const Employee = require("./lib/Employee");
 const Intern = require("./lib/Intern");
-const OUTPUT_DIR = path.resolve(__dirname, "output")
-const outputPath = path.join(OUTPUT_DIR, "team.html");
 
 const teamMembers = [];
-
 const questionsManager = [{
-    type: 'input',
-    name: 'name',
-    message: "Please enter Manger's name?",
-},
-
-{
-    type: 'input',
-    name: 'id',
-    message: "Please enter Manger's id?",
-},
-
-{
-    type: 'input',
-    name: 'email',
-    message: "Please enter Manger's email?",
-},
-{
-    type: 'input',
-    name: 'number',
-    message: "Please enter Manger's office number?",
-},
-{
-    type: 'list',
-    name: 'members',
-    message: "Do you want to add a team member?",
-    choices: [
-        "Engineer",
-        "Intern",
-        "I'm Done",
-    ]
-  ///need to add a way to end this 
-},
-]
-
-// functions declarations ***********
-
+        type: "input",
+        name: "name",
+        message: "What is the team manager's name?",
+    },
+    {
+        type: "input",
+        name: "id",
+        message: "What is the team manager's id?",
+    },
+    {
+        type: "input",
+        name: "email",
+        message: "What is the team manager's email?",
+    },
+    {
+        type: "input",
+        name: "number",
+        message: "What is the team manager's office number?",
+    },
+    {
+        type: "list",
+        name: "members",
+        message: "Do you want to add a team member? If yes, select their role.",
+        choices: ["Engineer", "Intern", "I'm done."],
+    },
+];
+/** FUNCTION DECLARATIONS ***************************/
 const askEngineer = () => {
     inquirer
-    .prompt ([
-    
-  {  
-    type: 'input',
-    name: 'name',
-    message: "Please enter Engineer's name?",
-},
-
-{
-    type: 'input',
-    name: 'id',
-    message: "Please enter Engineer's id?",
-},
-
-{
-    type: 'input',
-    name: 'email',
-    message: "Please enter Engineer's email?",
-},
-{
-    type: 'input',
-    name: 'github',
-    message: "Please enter Engineer's gitHub name?",
-},
-{
-    type: 'list',
-    name: 'members',
-    message: "Which type of team member do you want to add?",
-    choices: [
-        'Engineer',
-        'Intern',
-        "I'm Done",
-    ]
-  ///need to add a way to end this 
-},
-
-])
-
-}
-
-
+        .prompt([{
+                type: "input",
+                name: "name",
+                message: "What id your engineer's name?",
+            },
+            {
+                type: "input",
+                name: "id",
+                message: "What is your engineer's id?",
+            },
+            {
+                type: "input",
+                name: "email",
+                message: "What is your engineer's email?",
+            },
+            {
+                type: "input",
+                name: "GitHub",
+                message: "What is your engineer's GitHub username?",
+            },
+            {
+                type: "list",
+                name: "members",
+                message: "Which type of team member would you like to add?",
+                choices: ["Engineer", "Intern", "I'm done."],
+            },
+        ])
+        .then((data) => {
+            teamMembers.push(
+                new Engineer(data.name, data.id, data.email, data.GitHub)
+            );
+            if (data.members === "Engineer") {
+                askEngineer();
+            } else if (data.members === "Intern") {
+                askIntern();
+            } else {
+                let data = generateHTML(teamMembers);
+                fs.writeFileSync("team.html", data, "utf-8");
+            }
+        });
+};
 const askIntern = () => {
     inquirer
-    .prompt ([
-    
-  {  
-    type: 'input',
-    name: 'name',
-    message: "Please enter Intern's name?",
-},
-
-{
-    type: 'input',
-    name: 'id',
-    message: "Please enter Intern's id?",
-},
-
-{
-    type: 'input',
-    name: 'email',
-    message: "Please enter Intern's email?",
-},
-{
-    type: 'input',
-    name: 'school',
-    message: "Please enter Intern's school?",
-},
-{
-    type: 'list',
-    name: 'members',
-    message: "Which type of team member do you want to add?",
-    choices: [
-        'Engineer',
-        'Intern',
-        "I'm Done",
-    ]
-  ///need to add a way to end this 
-},
-
-]);
-
-}
-
-
+        .prompt([{
+                type: "input",
+                name: "name",
+                message: "What id your intern's name?",
+            },
+            {
+                type: "input",
+                name: "id",
+                message: "What is your intern's id?",
+            },
+            {
+                type: "input",
+                name: "email",
+                message: "What is your intern's email?",
+            },
+            {
+                type: "input",
+                name: "school",
+                message: "What is your intern's school?",
+            },
+            {
+                type: "list",
+                name: "members",
+                message: "Which type of team member would you like to add?",
+                choices: ["Engineer", "Intern", "I'm done."],
+            },
+        ]).then((data) => {
+            teamMembers.push(
+                new Intern(data.name, data.id, data.email, data.school)
+            );
+            if (data.members === "Engineer") {
+                askEngineer();
+            } else if (data.members === "Intern") {
+                askIntern();
+            } else {
+                let data = generateHTML(teamMembers);
+                fs.writeFileSync("team.html", data, "utf-8");
+            }
+        });
+};
 const init = () => {
     inquirer.prompt(questionsManager).then((data) => {
-        teamMembers.push(new Manager(data.name, data.id, data.email, data.officeNumber))
+        teamMembers.push(
+            new Manager(data.name, data.id, data.email, data.officeNumber)
+        );
         if (data.members === "Engineer") {
             askEngineer();
-        }
-        else if (data.members === "Intern") {
+        } else if (data.members === "Intern") {
             askIntern();
-        }
-        else {
-            //end function here and generatehtml
+        } else {
+            //end function here and generateHTML
             let data = generateHTML(teamMembers);
-            //generateHTML(teamMembers);
-            fs.writeFileSync('index.html', data, "utf-8");
+            fs.writeFileSync("team.html", data, "utf-8");
         }
-    })
-   
-
-}
-
+    });
+};
+/**FUNCTION CALLS*****************************/
 init();
-
 
