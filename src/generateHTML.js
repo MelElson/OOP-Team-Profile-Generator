@@ -1,13 +1,13 @@
 const generateManager = (data) => {
-  //data.name data.id data.email data.officeNumber
-  return `  <li>
+    //data.name data.id data.email data.officeNumber
+    return `  <li>
   <div class="col-md-3">
   <div class="card cardbody">
   <div class="card-header font: text-white" style="background: blue">
               ${data.name}<br>
               <div class="fas fa-mug-hot">
               <br>
-              ${data.getRole}
+              ${data.getRole()}
               </div>
               </div>
   <div class="card-body">
@@ -29,14 +29,14 @@ const generateManager = (data) => {
 </li>`;
 };
 const generateEngineer = (data) => {
-  return ` <li>
+    return ` <li>
   <div class="col-md-3">
   <div class="card cardbody">
   <div class="card-header font: text-white" style="background: blue">
               ${data.name}<br>
               <div class="fas fa-glasses">
               <br>
-              ${data.getRole}
+              ${data.getRole()}
               </div>
               </div>
   <div class="card-body">
@@ -57,14 +57,14 @@ const generateEngineer = (data) => {
 </li>`;
 };
 const generateIntern = (data) => {
-  return `<li>
+    return `<li>
   <div class="col-md-3">
   <div class="card cardbody">
   <div class="card-header font: text-white" style="background: blue">
               ${data.name}<br>
               <div class="fas fa-user-graduate">
               <br>
-             ${data.getRole}
+             ${data.getRole()}
               </div>
               </div>
   <div class="card-body">
@@ -85,32 +85,32 @@ const generateIntern = (data) => {
 </li>`;
 };
 const generateCards = (data) => {
-  let htmlString ="";
-  //data will be an array of Employees (Manager/Intern/Engineer)
-  data.forEach((element) => {
-      console.log(element)
-      //generate a card based on role
-      if (element.getRole() === "Manager") {
-          let string = generateManager(element);
-          htmlString += string;
-      } 
-      else if 
-          (element.getRole() === "Engineer") {
-              let string = generateEngineer(element);
-              htmlString += string; 
-              
-      } 
-      else if 
-          (element.getRole() === "Intern") {
-          let string = generateIntern(element);
-          htmlString += string;
-      }
-  });
-  return htmlString;
-  
+    let htmlString = "";
+    //data will be an array of Employees (Manager/Intern/Engineer)
+    data.forEach((element) => {
+        console.log(element)
+        //generate a card based on role
+        if (element.getRole() === "Manager") {
+            let string = generateManager(element);
+            htmlString += string;
+        }
+        else if
+            (element.getRole() === "Engineer") {
+            let string = generateEngineer(element);
+            htmlString += string;
+
+        }
+        else if
+            (element.getRole() === "Intern") {
+            let string = generateIntern(element);
+            htmlString += string;
+        }
+    });
+    return htmlString;
+
 };
 const generateHTML = (data) => {
-  return `<!DOCTYPE html>
+    return `<!DOCTYPE html>
   <html lang="en">
   <head>
       <meta charset="UTF-8">
@@ -120,9 +120,9 @@ const generateHTML = (data) => {
       <script src="https://kit.fontawesome.com/ba0d43019a.js" crossorigin="anonymous"></script>
   </head>
   <body>
-  <div class="jumbotron jumbotron-fluid" style='background-color: red;'>
+  <div class="jumbotron jumbotron-fluid" style='background-color: #ff0066;'>
   <div class="container">
-  <h1 class="display-4 text-center">My Team</h1>
+  <h1 class="cardbody display-4 text-center">My Team</h1>
   </div>
 </div>
       ${generateCards(data)}
