@@ -9,8 +9,8 @@ const Engineer = require("../lib/engineer");
      const emp = new Engineer('Rob', 1, 'Rob@email.com', 'Engineer')
      expect(emp.getRole()).toBe(testRole)
  });
- test('Get the githubusername through getHub()', () =>{
-     const testUsername = 'githubusername'
+ test('Get the githubname through getHub', () =>{
+     const testUsername = 'githubname'
      const emp = new Engineer('Rob', 1, 'Rob@email.com', testUsername)
      expect(emp.getGitHub()).toBe(testUsername)
  });
