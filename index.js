@@ -74,7 +74,7 @@ const askEngineer = () => {
                 askIntern();
             } else {
                 let data = generateHTML(teamMembers);
-                fs.writeFileSync("team.html", data, "utf-8");
+                fs.writeFileSync("index.html", data, "utf-8");
             }
         });
 };
@@ -116,7 +116,7 @@ const askIntern = () => {
                 askIntern();
             } else {
                 let data = generateHTML(teamMembers);
-                fs.writeFileSync("team.html", data, "utf-8");
+                fs.writeFileSync("index.html", data, "utf-8");
             }
         });
 };
@@ -132,7 +132,7 @@ const init = () => {
         } else {
             //end function here and generateHTML
             let data = generateHTML(teamMembers);
-            fs.writeFileSync("team.html", data, "utf-8");
+            fs.writeFileSync("index.html", data, "utf-8");
         }
     });
 };
