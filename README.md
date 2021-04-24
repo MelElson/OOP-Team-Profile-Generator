@@ -27,8 +27,8 @@ The purpose of this task is to create a
 The site uses HTML, CSS code, Javascript,node,js, Inquirer, Jest
 
 ## Installation
-To access the website go to https://github.com/MelElson/OOP-Team-Profile-Generator
-To clone https://github.com/MelElson/OOP-Team-Profile-Generator
+To access the website go to: https://github.com/MelElson/OOP-Team-Profile-Generator
+Walkthrough Link:  https://drive.google.com/file/d/1o8wYV9kBts0HPlCKMpYH8BLR_OJAKdaH/view
 
 
 # Collaboration 
@@ -51,9 +51,9 @@ To run tests: npm run test
 ![Changed HTML](./images/screenshotteamprofile.png)
 
 ### Team Generator Input
-![Changed HTML](./assets/images/searchforcity.png)
+![Changed HTML](./images/screenshotteamprofileinput.png)
 
 ### Walkthrough
-![Demo of README](./images/README.gif)
+![Demo of README](./images/TeamProfileWalkthrough.gif)
 
 
