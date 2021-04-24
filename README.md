@@ -22,7 +22,8 @@
 Team Profile Generator
 
 ## General Info
-The purpose of this task is to create a 
+The purpose of this task is to create a to generate a webpage that displays my team's basic info
+SO THAT I have quick access to their emails and GitHub profiles
 ## Technologies 
 The site uses HTML, CSS code, Javascript,node,js, Inquirer, Jest
 
