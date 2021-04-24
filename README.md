@@ -28,7 +28,7 @@ The site uses HTML, CSS code, Javascript,node,js, Inquirer, Jest
 
 ## Installation
 To access the website go to: https://github.com/MelElson/OOP-Team-Profile-Generator
-Walkthrough Link:  https://drive.google.com/file/d/1o8wYV9kBts0HPlCKMpYH8BLR_OJAKdaH/view
+
 
 
 # Collaboration 
